@@ -100,6 +100,9 @@ export default function IngredientPage({ page }: { page: IngredientPageType }) {
           <h2>Why It Does or Doesn't Clog Pores</h2>
           <p>{page.whyItDoesOrDoesntClog}</p>
 
+          <h2>Practical Guidance for Acne-Prone Skin</h2>
+          <p>{page.practicalGuidance}</p>
+
           <h2>Related Ingredients</h2>
           <p>Explore five ingredients commonly compared with {page.displayName}:</p>
           <ul>

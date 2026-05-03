@@ -33,9 +33,15 @@ export function IngredientResultsTable({ results }: { results: IngredientResult[
               );
             }
 
-            const isHighRisk = result.match.rating >= 4;
-            const isSafe = result.match.rating <= 1;
-            const bgClass = isHighRisk ? "bg-red-50/50" : isSafe ? "bg-emerald-50/50" : "bg-orange-50/50";
+            const rating = result.match.rating;
+            const bgClass =
+              rating <= 1
+                ? "bg-emerald-50/50"
+                : rating === 2
+                  ? "bg-yellow-50/60"
+                  : rating === 3
+                    ? "bg-orange-50/50"
+                    : "bg-red-50/50";
 
             return (
               <TableRow key={i} className={bgClass}>
