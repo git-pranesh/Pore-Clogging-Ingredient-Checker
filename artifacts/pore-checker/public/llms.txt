@@ -1,0 +1,281 @@
+# Pore Clogging Ingredient Checker
+
+A static React + Vite website that helps acne-prone skincare shoppers identify pore-clogging ingredients in product ingredient lists. Each ingredient is rated 0-5 on the comedogenic scale (Fulton/Kligman methodology).
+
+## Rating Scale
+
+- 0 = Will not clog pores (non-comedogenic)
+- 1 = Very low chance of clogging
+- 2 = Moderately low chance
+- 3 = Moderate chance
+- 4 = Fairly high chance
+- 5 = Very high chance of clogging pores
+
+## Comedogenic Database
+
+Acetylated Lanolin: 4
+Acetylated Lanolin Alcohol: 4
+Adapalene: 0
+AHAs (Alpha Hydroxy Acids): 0
+Algae Extract: 5
+Allantoin: 0
+Almond Oil: 2
+Aloe Vera: 0
+Alpha Arbutin: 0
+Apricot Kernel Oil: 2
+Arbutin: 0
+Argan Oil: 0
+Ascorbyl Palmitate: 2
+Asiaticoside: 0
+Avocado Oil: 3
+Azelaic Acid: 0
+Bakuchiol: 0
+Beeswax: 2
+Behenic Acid: 1
+Behenyl Alcohol: 1
+Bentonite: 0
+Benzoyl Peroxide: 0
+Benzyl Alcohol: 0
+Beta-Glucan: 0
+Betaine: 0
+BHA (Beta Hydroxy Acid): 0
+Black Currant Seed Oil: 1
+Borage Seed Oil: 2
+Butyl Stearate: 3
+Butylene Glycol: 0
+C12-15 Alkyl Benzoate: 1
+Caffeine: 0
+Calendula Extract: 1
+Camellia Oil: 1
+Candelilla Wax: 1
+Caprylic/Capric Triglyceride: 1
+Caprylyl Glycol: 0
+Carbomer: 0
+Carnauba Wax: 1
+Carrageenan: 4
+Castor Oil: 1
+Centella Asiatica: 0
+Ceramide: 0
+Cetearyl Alcohol: 2
+Cetearyl Ethylhexanoate: 2
+Cetiol Ultimate: 0
+Cetyl Alcohol: 2
+Cetyl Esters: 1
+Chamomile Extract: 0
+Chlorphenesin: 0
+Cholesterol: 0
+Cocamidopropyl Betaine: 0
+Coco-Caprylate/Caprate: 1
+Coco-Glucoside: 0
+Cocoa Butter: 4
+Coconut Oil: 4
+Colloidal Oatmeal: 0
+Cupuacu Butter: 1
+Cyclohexasiloxane: 1
+Cyclomethicone: 1
+Cyclopentasiloxane: 1
+Decyl Glucoside: 0
+Decyl Oleate: 3
+Dehydroacetic Acid: 0
+Dicaprylyl Carbonate: 1
+Dimethicone: 1
+Dimethiconol: 1
+Ectoin: 0
+Ethylhexyl Palmitate: 4
+Ethylhexylglycerin: 0
+Evening Primrose Oil: 2
+Ferulic Acid: 0
+Flaxseed Oil: 4
+Glycerin: 0
+Glyceryl Stearate: 1
+Glyceryl Stearate SE: 3
+Glycolic Acid: 0
+Grapeseed Oil: 1
+Green Tea Extract: 0
+Hemp Seed Oil: 0
+Hexylene Glycol: 0
+Hyaluronic Acid: 0
+Hydrogenated Lecithin: 1
+Hydrogenated Polyisobutene: 1
+Hydroquinone: 0
+Illipe Butter: 1
+Iron Oxides: 0
+Isocetyl Stearate: 4
+Isohexadecane: 1
+Isopropyl Isostearate: 5
+Isopropyl Myristate: 5
+Isopropyl Palmitate: 4
+Jojoba Oil: 2
+Kaolin: 0
+Kojic Acid: 0
+Kokum Butter: 1
+Kukui Nut Oil: 2
+Lactic Acid: 0
+Lanolin: 3
+Lanolin Alcohol: 2
+Lauric Acid: 4
+Lauryl Alcohol: 3
+Lecithin: 4
+Licorice Root Extract: 0
+Linoleic Acid: 0
+Linolenic Acid: 0
+Linseed Oil: 4
+Macadamia Nut Oil: 2
+Madecassoside: 0
+Magnesium Ascorbyl Phosphate: 0
+Mandelic Acid: 0
+Mango Butter: 0
+Marula Oil: 1
+Methylparaben: 0
+Mica: 0
+Microcrystalline Wax: 1
+Mineral Oil: 1
+Mowrah Butter: 2
+Mugwort Extract: 0
+Murumuru Butter: 2
+Myristic Acid: 5
+Myristyl Alcohol: 3
+Myristyl Lactate: 4
+Myristyl Myristate: 5
+Niacinamide: 0
+Octyl Palmitate: 4
+Oleic Acid: 2
+Olive Oil: 2
+Ozokerite: 1
+Palmitic Acid: 2
+Panthenol: 0
+Paraffin Wax: 1
+Peach Kernel Oil: 4
+PEG-100 Stearate: 1
+PEG-7 Glyceryl Cocoate: 0
+Pentylene Glycol: 0
+Peptides: 0
+Petrolatum: 1
+Phenoxyethanol: 0
+Phenyl Trimethicone: 1
+Polyglyceryl-3 Diisostearate: 2
+Polysorbate 20: 0
+Potassium Sorbate: 0
+PPG-2 Myristyl Ether Propionate: 4
+Propanediol: 0
+Propolis Extract: 1
+Propylene Glycol: 0
+Propylparaben: 0
+Pumpkin Seed Oil: 2
+Resveratrol: 0
+Retinaldehyde: 1
+Retinol: 1
+Retinyl Palmitate: 1
+Rosehip Oil: 1
+Rosemary Extract: 0
+Safflower Oil: 0
+Sal Butter: 1
+Salicylic Acid: 0
+Sclerotium Gum: 0
+Sea Buckthorn Oil: 1
+Sesame Oil: 2
+Shea Butter: 0
+Silica: 0
+Snail Mucin: 0
+Sodium Ascorbyl Phosphate: 0
+Sodium Benzoate: 0
+Sodium Cocoyl Isethionate: 1
+Sodium Hyaluronate: 0
+Sodium Laureth Sulfate: 1
+Sodium Lauroyl Sarcosinate: 1
+Sodium Lauryl Sulfate: 2
+Sodium PCA: 0
+Sorbic Acid: 0
+Sorbitan Oleate: 3
+Sorbitol: 0
+Soybean Oil: 3
+Squalane: 1
+Squalene: 1
+Stearic Acid: 2
+Stearyl Alcohol: 2
+Sunflower Oil: 0
+Sweet Almond Oil: 2
+Talc: 1
+Tamanu Oil: 2
+Tea Tree Oil: 1
+Tetrahexyldecyl Ascorbate: 1
+Titanium Dioxide: 0
+Tocopherol: 2
+Tocopheryl Acetate: 0
+Tranexamic Acid: 0
+Trehalose: 0
+Tretinoin: 0
+Tucuma Butter: 2
+Urea: 0
+Vitamin C: 0
+Wheat Germ Oil: 5
+Witch Hazel: 0
+Xanthan Gum: 0
+Zinc Oxide: 0
+
+## Ingredient Detail Pages
+
+- https://pore-checker.example.com/is-coconut-oil-comedogenic
+- https://pore-checker.example.com/is-wheat-germ-oil-comedogenic
+- https://pore-checker.example.com/is-isopropyl-myristate-comedogenic
+- https://pore-checker.example.com/is-myristyl-myristate-comedogenic
+- https://pore-checker.example.com/is-isopropyl-palmitate-comedogenic
+- https://pore-checker.example.com/is-acetylated-lanolin-comedogenic
+- https://pore-checker.example.com/is-algae-extract-comedogenic
+- https://pore-checker.example.com/is-lauric-acid-comedogenic
+- https://pore-checker.example.com/is-myristic-acid-comedogenic
+- https://pore-checker.example.com/is-flaxseed-oil-comedogenic
+- https://pore-checker.example.com/is-linseed-oil-comedogenic
+- https://pore-checker.example.com/is-soybean-oil-comedogenic
+- https://pore-checker.example.com/is-peach-kernel-oil-comedogenic
+- https://pore-checker.example.com/is-avocado-oil-comedogenic
+- https://pore-checker.example.com/is-lanolin-comedogenic
+- https://pore-checker.example.com/is-lanolin-alcohol-comedogenic
+- https://pore-checker.example.com/is-jojoba-oil-comedogenic
+- https://pore-checker.example.com/is-olive-oil-comedogenic
+- https://pore-checker.example.com/is-almond-oil-comedogenic
+- https://pore-checker.example.com/is-rosehip-oil-comedogenic
+- https://pore-checker.example.com/is-argan-oil-comedogenic
+- https://pore-checker.example.com/is-sunflower-oil-comedogenic
+- https://pore-checker.example.com/is-safflower-oil-comedogenic
+- https://pore-checker.example.com/is-grapeseed-oil-comedogenic
+- https://pore-checker.example.com/is-hemp-seed-oil-comedogenic
+- https://pore-checker.example.com/is-sea-buckthorn-oil-comedogenic
+- https://pore-checker.example.com/is-shea-butter-comedogenic
+- https://pore-checker.example.com/is-cocoa-butter-comedogenic
+- https://pore-checker.example.com/is-glycerin-comedogenic
+- https://pore-checker.example.com/is-hyaluronic-acid-comedogenic
+- https://pore-checker.example.com/is-panthenol-comedogenic
+- https://pore-checker.example.com/is-allantoin-comedogenic
+- https://pore-checker.example.com/is-aloe-vera-comedogenic
+- https://pore-checker.example.com/is-centella-asiatica-comedogenic
+- https://pore-checker.example.com/is-green-tea-extract-comedogenic
+- https://pore-checker.example.com/is-tea-tree-oil-comedogenic
+- https://pore-checker.example.com/is-niacinamide-comedogenic
+- https://pore-checker.example.com/is-retinol-comedogenic
+- https://pore-checker.example.com/is-vitamin-c-comedogenic
+- https://pore-checker.example.com/is-salicylic-acid-comedogenic
+- https://pore-checker.example.com/is-lactic-acid-comedogenic
+- https://pore-checker.example.com/is-glycolic-acid-comedogenic
+- https://pore-checker.example.com/is-aha-comedogenic
+- https://pore-checker.example.com/is-bha-comedogenic
+- https://pore-checker.example.com/is-benzoyl-peroxide-comedogenic
+- https://pore-checker.example.com/is-azelaic-acid-comedogenic
+- https://pore-checker.example.com/is-tranexamic-acid-comedogenic
+- https://pore-checker.example.com/is-kojic-acid-comedogenic
+- https://pore-checker.example.com/is-peptides-comedogenic
+- https://pore-checker.example.com/is-caffeine-comedogenic
+- https://pore-checker.example.com/is-dimethicone-comedogenic
+- https://pore-checker.example.com/is-squalane-comedogenic
+- https://pore-checker.example.com/is-mineral-oil-comedogenic
+- https://pore-checker.example.com/is-petrolatum-comedogenic
+- https://pore-checker.example.com/is-ceramides-comedogenic
+- https://pore-checker.example.com/is-zinc-oxide-comedogenic
+- https://pore-checker.example.com/is-titanium-dioxide-comedogenic
+- https://pore-checker.example.com/is-cetyl-alcohol-comedogenic
+- https://pore-checker.example.com/is-stearic-acid-comedogenic
+- https://pore-checker.example.com/is-beeswax-comedogenic
+
+## Methodology Notes
+
+Ratings are derived from published comedogenicity studies (rabbit ear assays and human use tests) and industry references such as the Cosmetics Info database. Individual reactions vary; ratings are guidance, not medical advice.

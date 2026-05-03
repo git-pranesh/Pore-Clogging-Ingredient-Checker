@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Pore Clogging Ingredient Checker"
+version = "1.0.0"
+id = "artifacts/pore-checker"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23466
+
+[services.development]
+run = "pnpm --filter @workspace/pore-checker run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/pore-checker", "run", "build" ]
+publicDir = "artifacts/pore-checker/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23466"
+BASE_PATH = "/"
