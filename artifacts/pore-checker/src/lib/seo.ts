@@ -2,7 +2,7 @@ export const SITE_URL = "https://pore-checker.example.com";
 export const SITE_NAME = "Pore Clogging Ingredient Checker";
 export const SITE_DESCRIPTION =
   "Free tool to check skincare ingredient lists for pore-clogging, comedogenic ingredients that trigger acne.";
-export const OG_IMAGE = `${SITE_URL}/og-image.png`;
+export const OG_IMAGE = `${SITE_URL}/opengraph.jpg`;
 
 export type SeoBase = {
   title: string;

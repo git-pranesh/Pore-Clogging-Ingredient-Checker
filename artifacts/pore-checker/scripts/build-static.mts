@@ -25,7 +25,12 @@ const urls: Array<{ loc: string; priority: number }> = [
 ];
 for (let n = 0; n <= 5; n++) urls.push({ loc: `/comedogenic-rating-${n}`, priority: 0.8 });
 for (const p of guidePaths) urls.push({ loc: p, priority: 0.7 });
+const detailedSlugs = new Set(ingredientPages.map((p) => p.slug));
 for (const page of ingredientPages) urls.push({ loc: `/is-${page.slug}-comedogenic`, priority: 0.8 });
+for (const item of comedogenicDatabase) {
+  if (detailedSlugs.has(item.slug)) continue;
+  urls.push({ loc: `/is-${item.slug}-comedogenic`, priority: 0.6 });
+}
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

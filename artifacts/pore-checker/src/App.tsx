@@ -6,6 +6,7 @@ import { HelmetProvider } from "react-helmet-async";
 
 import Home from "@/pages/Home";
 import IngredientPage from "@/pages/IngredientPage";
+import IngredientStub from "@/pages/IngredientStub";
 import IngredientsList from "@/pages/IngredientsList";
 import RatingFilterPage from "@/pages/RatingFilterPage";
 import NonComedogenicMoisturizer from "@/pages/guides/NonComedogenicMoisturizer";
@@ -15,9 +16,13 @@ import WorstForAcneProne from "@/pages/guides/WorstForAcneProne";
 import HowToRead from "@/pages/guides/HowToRead";
 import NotFound from "@/pages/not-found";
 import { ingredientPages } from "@/data/ingredientPages";
+import { comedogenicDatabase } from "@/data/comedogenicDatabase";
 
 const queryClient = new QueryClient();
 const RATINGS = [0, 1, 2, 3, 4, 5] as const;
+
+const detailedSlugs = new Set(ingredientPages.map((p) => p.slug));
+const stubItems = comedogenicDatabase.filter((item) => !detailedSlugs.has(item.slug));
 
 function App() {
   const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -41,9 +46,16 @@ function App() {
               ))}
               {ingredientPages.map((page) => (
                 <Route
-                  key={page.slug}
+                  key={`page-${page.slug}`}
                   path={`/is-${page.slug}-comedogenic`}
                   element={<IngredientPage page={page} />}
+                />
+              ))}
+              {stubItems.map((item) => (
+                <Route
+                  key={`stub-${item.slug}`}
+                  path={`/is-${item.slug}-comedogenic`}
+                  element={<IngredientStub item={item} />}
                 />
               ))}
               <Route
