@@ -1,0 +1,95 @@
+text
+Build a complete production-ready Next.js 14 App Router website called "Pore Clogging Ingredient Checker" as a fully static export.
+
+=== CORE TOOL ===
+- Large textarea input: "Paste your full ingredients list here"
+- On submit: parse the text, split on commas, match each ingredient against the comedogenic database
+- Show results in a clean table:
+  - Green rows: safe ingredients (rating 0-1)
+  - Yellow rows: low risk (rating 2)
+  - Orange rows: moderate risk (rating 3)
+  - Red rows: high risk (rating 4-5)
+- Each flagged ingredient shows: Name, Comedogenic Rating (0-5), Why it clogs, Safer alternatives
+- "Overall Safety Score" for the product (0-100)
+- URL-based state: encode ingredients in URL so users can share/bookmark results
+- "Try an example" buttons: pre-load 3 example products (moisturizer, sunscreen, foundation)
+- Case-insensitive matching, handle INCI names vs common names
+
+=== COMEDOGENIC DATABASE ===
+Create /data/comedogenicDatabase.ts as a typed array. Include minimum 150 ingredients:
+
+High risk (4-5): Coconut Oil (4), Wheat Germ Oil (5), Flaxseed Oil (4), Acetylated Lanolin (4), Isopropyl Myristate (5), Isopropyl Palmitate (4), Myristyl Myristate (5), Cocoa Butter (4), Algae Extract (5), Lauric Acid (4), Myristic Acid (5), Linseed Oil (4), Soybean Oil (3), Peach Kernel Oil (4), Avocado Oil (3), Lanolin (3), Olive Oil (2), Almond Oil (2), Jojoba Oil (2)
+
+Safe (0): Hyaluronic Acid, Niacinamide, Glycerin, Retinol, Salicylic Acid, Lactic Acid, Glycolic Acid, Vitamin C (Ascorbic Acid), Dimethicone (1), Cyclomethicone (1), Zinc Oxide (0), Titanium Dioxide (0), Ceramide (0), Peptides, Allantoin, Panthenol, Centella Asiatica, Green Tea Extract, Caffeine, Azelaic Acid
+
+Include INCI names AND common aliases for each ingredient (e.g., "Cocos Nucifera Oil" = "Coconut Oil")
+
+Include at least 150 ingredients total with accurate ratings.
+
+=== PROGRAMMATIC SEO PAGES ===
+Create /data/ingredientPages.ts for dynamic routes.
+
+Generate /is-[slug]-comedogenic pages for these 60 ingredients:
+coconut-oil, niacinamide, glycerin, hyaluronic-acid, retinol, salicylic-acid, vitamin-c, dimethicone, jojoba-oil, olive-oil, almond-oil, shea-butter, cocoa-butter, lanolin, isopropyl-myristate, wheat-germ-oil, flaxseed-oil, avocado-oil, rosehip-oil, argan-oil, tea-tree-oil, aloe-vera, zinc-oxide, titanium-dioxide, ceramides, niacinamide, lactic-acid, glycolic-acid, aha, bha, benzoyl-peroxide, peptides, caffeine, green-tea-extract, centella-asiatica, tranexamic-acid, kojic-acid, azelaic-acid, mineral-oil, petrolatum, squalane, bakuchiol, alpha-arbutin, ferulic-acid, resveratrol, marula-oil, sea-buckthorn-oil, evening-primrose-oil, borage-oil, hemp-seed-oil, sunflower-oil, rice-bran-oil, castor-oil, lauryl-alcohol, cetyl-alcohol, stearyl-alcohol, sodium-lauryl-sulfate, sodium-laureth-sulfate, fragrance, essential-oils
+
+Each /is-[ingredient]-comedogenic page:
+- H1: "Is [Ingredient] Comedogenic?" (exact search query)
+- Answer immediately in first paragraph (yes/no/it depends + rating)
+- Full explanation: what it is, how it's used in skincare, why it does/doesn't clog pores
+- Comedogenic rating badge (styled 0-5 scale)
+- Safe alternatives section (if it's high-rated)
+- "Check your product for [ingredient]" — link to main tool with ingredient pre-filled
+- 400+ words total
+- 5 FAQs with FAQPage JSON-LD
+
+Also generate:
+- /comedogenic-ingredients-list — full sortable table of all 150+ ingredients with ratings
+- /comedogenic-rating-0, /comedogenic-rating-1, /comedogenic-rating-2, /comedogenic-rating-3, /comedogenic-rating-4, /comedogenic-rating-5 — filtered list pages
+- /non-comedogenic-moisturizer-ingredients — guide
+- /non-comedogenic-sunscreen-ingredients — guide
+- /best-ingredients-for-acne-prone-skin — guide
+- /worst-ingredients-for-acne-prone-skin — guide
+- /how-to-read-skincare-ingredients-list — guide
+
+=== SEO & AEO REQUIREMENTS ===
+
+robots.txt:
+User-agent: *
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+Sitemap: https://[domain]/sitemap.xml
+
+text
+
+sitemap.xml via app/sitemap.ts — all pages. Homepage=1.0, ingredient pages=0.8, guide pages=0.7.
+
+JSON-LD on every page:
+- WebApplication on tool page (applicationCategory: "HealthApplication")
+- FAQPage with 5 unique Q&As per page
+- BreadcrumbList: Home > [page name]
+- Article schema on guide pages (datePublished, dateModified, author)
+- ItemList schema on list pages (the ingredient tables)
+- WebSite + SearchAction on homepage
+- On ingredient pages: use Substance schema or MedicalEntity if applicable
+
+generateMetadata() per page — unique title, description, canonical, og:*, twitter:*
+
+Semantic HTML throughout. One H1 per page. Proper heading hierarchy.
+
+llms.txt:
+Describe the site. List the full comedogenic database in text format (ingredient: rating) so AI assistants can directly answer "is X comedogenic?" questions. Include methodology notes. This file is the most important AEO asset on this site.
+
+Internal linking: every ingredient page links to 5 similar ingredient pages + main checker tool.
+
+=== TECH STACK ===
+Next.js 14, TypeScript, Tailwind CSS. Static export. All data hardcoded in /data/ TypeScript files.
+
+=== DESIGN ===
+Clean beauty/skincare aesthetic. White background, sage green (#84a98c) and soft pink (#f4a261) accents. Mobile-first — most users check ingredients on phone while shopping.
