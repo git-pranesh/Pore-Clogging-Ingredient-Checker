@@ -1,9 +1,9 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { RatingBadge } from "./RatingBadge";
-import { Ingredient } from "../data/comedogenicDatabase";
-import { Link } from "wouter";
+import type { Ingredient } from "../data/comedogenicDatabase";
+import { Link } from "react-router-dom";
 
-interface IngredientResult {
+export interface IngredientResult {
   originalName: string;
   match: Ingredient | null;
 }
@@ -40,7 +40,7 @@ export function IngredientResultsTable({ results }: { results: IngredientResult[
             return (
               <TableRow key={i} className={bgClass}>
                 <TableCell className="font-medium">
-                  <Link href={`/is-${result.match.slug}-comedogenic`} className="hover:underline text-primary">
+                  <Link to={`/is-${result.match.slug}-comedogenic`} className="hover:underline text-primary">
                     {result.match.name}
                   </Link>
                 </TableCell>

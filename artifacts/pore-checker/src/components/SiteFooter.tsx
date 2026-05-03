@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 export function SiteFooter() {
   return (
@@ -8,8 +8,8 @@ export function SiteFooter() {
           Built for acne-prone skincare shoppers.
         </p>
         <div className="flex gap-4">
-          <Link href="/comedogenic-rating-0" className="text-sm font-medium text-muted-foreground hover:underline underline-offset-4">Rating 0</Link>
-          <Link href="/comedogenic-rating-5" className="text-sm font-medium text-muted-foreground hover:underline underline-offset-4">Rating 5</Link>
+          <Link to="/comedogenic-rating-0" className="text-sm font-medium text-muted-foreground hover:underline underline-offset-4">Rating 0</Link>
+          <Link to="/comedogenic-rating-5" className="text-sm font-medium text-muted-foreground hover:underline underline-offset-4">Rating 5</Link>
         </div>
       </div>
     </footer>
