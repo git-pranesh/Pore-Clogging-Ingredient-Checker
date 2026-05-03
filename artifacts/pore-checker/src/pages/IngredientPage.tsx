@@ -3,6 +3,29 @@ import { Layout } from "../components/Layout";
 import { SeoHead } from "../components/SeoHead";
 import { RatingBadge } from "../components/RatingBadge";
 import { ingredientPages, type IngredientPage as IngredientPageType } from "../data/ingredientPages";
+import { comedogenicDatabase } from "../data/comedogenicDatabase";
+
+type SafeAlt = { slug: string; name: string; rating: number };
+
+function resolveSafeAlternatives(slugs: string[]): SafeAlt[] {
+  const out: SafeAlt[] = [];
+  const seen = new Set<string>();
+  for (const slug of slugs) {
+    if (seen.has(slug)) continue;
+    const page = ingredientPages.find((p) => p.slug === slug);
+    if (page) {
+      out.push({ slug: page.slug, name: page.displayName, rating: page.rating });
+      seen.add(slug);
+      continue;
+    }
+    const db = comedogenicDatabase.find((d) => d.slug === slug);
+    if (db) {
+      out.push({ slug: db.slug, name: db.name, rating: db.rating });
+      seen.add(slug);
+    }
+  }
+  return out;
+}
 import {
   buildSeo,
   articleJsonLd,
@@ -58,6 +81,7 @@ export default function IngredientPage({ page }: { page: IngredientPageType }) {
   );
 
   const related = pickRelated(page, 5);
+  const safeAlternatives = resolveSafeAlternatives(page.saferAlternatives);
 
   const jsonLd = [
     articleJsonLd({
@@ -102,6 +126,25 @@ export default function IngredientPage({ page }: { page: IngredientPageType }) {
 
           <h2>Practical Guidance for Acne-Prone Skin</h2>
           <p>{page.practicalGuidance}</p>
+
+          {safeAlternatives.length > 0 && (
+            <>
+              <h2>Safe Alternatives</h2>
+              <p>
+                If you want to swap {page.displayName} out of your routine, these are the safer ingredients formulators reach for in its place:
+              </p>
+              <ul>
+                {safeAlternatives.map((alt) => (
+                  <li key={alt.slug}>
+                    <Link to={`/is-${alt.slug}-comedogenic`} className="text-primary hover:underline">
+                      {alt.name}
+                    </Link>
+                    {" "}— rating {alt.rating} / 5
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
 
           <h2>Related Ingredients</h2>
           <p>Explore five ingredients commonly compared with {page.displayName}:</p>

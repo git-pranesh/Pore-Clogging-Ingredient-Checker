@@ -71,6 +71,18 @@ export default function IngredientStub({ item }: { item: Ingredient }) {
 
   const related = pickRelated(item, 5);
 
+  const nameToEntry = new Map(comedogenicDatabase.map((d) => [d.name.toLowerCase(), d]));
+  const slugToEntry = new Map(comedogenicDatabase.map((d) => [d.slug, d]));
+  const safeAlternatives: Ingredient[] = [];
+  const seenAlt = new Set<string>();
+  for (const ref of item.saferAlternatives ?? []) {
+    const found = slugToEntry.get(ref) ?? nameToEntry.get(ref.toLowerCase());
+    if (found && !seenAlt.has(found.slug)) {
+      safeAlternatives.push(found);
+      seenAlt.add(found.slug);
+    }
+  }
+
   const jsonLd = [
     articleJsonLd({ title: seo.title, description: seo.description, path }),
     breadcrumbJsonLd([
@@ -116,6 +128,25 @@ export default function IngredientStub({ item }: { item: Ingredient }) {
           <p>
             {item.name} belongs to the <strong>{item.category ?? "general skincare"}</strong> family of cosmetic ingredients. Where it appears in an ingredient list matters: in the top five inactive ingredients of a leave-on product the concentration is high enough to drive the effects described above, while a position in the bottom third of the list typically means a fractional percent that most skin types tolerate.
           </p>
+
+          {safeAlternatives.length > 0 && (
+            <>
+              <h2>Safe Alternatives</h2>
+              <p>
+                If you need to replace {item.name} in your routine, formulators commonly substitute:
+              </p>
+              <ul>
+                {safeAlternatives.map((alt) => (
+                  <li key={alt.slug}>
+                    <Link to={`/is-${alt.slug}-comedogenic`} className="text-primary hover:underline">
+                      {alt.name}
+                    </Link>
+                    {" "}— rating {alt.rating} / 5
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
 
           <h2>Related Ingredients</h2>
           <p>Five ingredients commonly compared with {item.name}:</p>
